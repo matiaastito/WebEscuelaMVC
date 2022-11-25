@@ -71,6 +71,10 @@ namespace WebEscuelaMVC.Controllers
 
         public ActionResult TraerPorNumero(string numero)
         {
+            if (BuscaPorNumero(numero) == null)
+            {
+                return HttpNotFound();
+            }
             return View("Details", BuscaPorNumero(numero));
         }
 
@@ -95,11 +99,11 @@ namespace WebEscuelaMVC.Controllers
         }
 
         [NonAction]
-        public List<Aula> BuscaPorNumero(string numero)
+        public Aula BuscaPorNumero(string numero)
         {
-            List<Aula> listXNumero = new List<Aula>();
-            listXNumero = (from a in context.Aulas where a.Numero.ToLower() == numero.ToLower() select a).ToList();
-            return listXNumero;
+            Aula aulaXNumero = new Aula();
+            aulaXNumero = (from a in context.Aulas where a.Numero.ToLower() == numero.ToLower() select a).SingleOrDefault();
+            return aulaXNumero;
         }
 
         #endregion
