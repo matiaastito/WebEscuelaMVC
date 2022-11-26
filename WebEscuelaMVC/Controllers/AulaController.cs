@@ -56,11 +56,15 @@ namespace WebEscuelaMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Aula aula, string id)
+        public ActionResult Edit(Aula aula)
         {
-            Aula aulaDB = context.Aulas.Find(id);
-            ModificarDatos(aula, aulaDB);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                context.Entry(aula).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View("Modificar", aula);
         }
 
         public ActionResult ListarPorEstado(string estado)
@@ -80,15 +84,6 @@ namespace WebEscuelaMVC.Controllers
 
         #region metodos NonAction
 
-        [NonAction]
-        public void ModificarDatos (Aula aula, Aula aulaDB)
-        {
-            aulaDB.AulaId = aula.AulaId;
-            aulaDB.Numero = aula.Numero;
-            aulaDB.Estado = aula.Estado;
-            context.Entry(aulaDB).State = EntityState.Modified;
-            context.SaveChanges();
-        }
 
         [NonAction]
         public List<Aula> BuscarPorEstado (string estado)
