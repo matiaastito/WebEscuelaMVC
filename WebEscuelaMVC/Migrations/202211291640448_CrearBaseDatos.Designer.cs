@@ -7,13 +7,13 @@ namespace WebEscuelaMVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CreateDataBase : IMigrationMetadata
+    public sealed partial class CrearBaseDatos : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDataBase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CrearBaseDatos));
         
         string IMigrationMetadata.Id
         {
-            get { return "202211252215540_CreateDataBase"; }
+            get { return "202211291640448_CrearBaseDatos"; }
         }
         
         string IMigrationMetadata.Source

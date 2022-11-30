@@ -29,13 +29,13 @@ namespace WebEscuelaMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Create", aula);
+                return View("Register", aula);
             }
             context.Aulas.Add(aula);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             Aula aula = context.Aulas.Find(id);
             if (aula == null)
@@ -45,7 +45,7 @@ namespace WebEscuelaMVC.Controllers
             return View("Detalle", aula);
         }
 
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             Aula aula = context.Aulas.Find(id);
             if (aula == null)
@@ -56,7 +56,8 @@ namespace WebEscuelaMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Aula aula)
+        [ActionName("Edit")]
+        public ActionResult Edit([Bind(Include = "AulaId,Numero,Estado")] Aula aula)
         {
             if (ModelState.IsValid)
             {
@@ -67,13 +68,35 @@ namespace WebEscuelaMVC.Controllers
             return View("Modificar", aula);
         }
 
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            Aula aula = context.Aulas.Find(id);
+            if (aula == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Delete", aula);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Aula aula = context.Aulas.Find(id);
+            context.Aulas.Remove(aula);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         public ActionResult ListarPorEstado(string estado)
         {
 
             return View("Index", BuscarPorEstado(estado));
         }
 
-        public ActionResult TraerPorNumero(string numero)
+        public ActionResult TraerPorNumero(int numero)
         {
             if (BuscaPorNumero(numero) == null)
             {
@@ -94,10 +117,10 @@ namespace WebEscuelaMVC.Controllers
         }
 
         [NonAction]
-        public Aula BuscaPorNumero(string numero)
+        public Aula BuscaPorNumero(int numero)
         {
             Aula aulaXNumero = new Aula();
-            aulaXNumero = (from a in context.Aulas where a.Numero.ToLower() == numero.ToLower() select a).SingleOrDefault();
+            aulaXNumero = (from a in context.Aulas where a.Numero == numero select a).SingleOrDefault();
             return aulaXNumero;
         }
 

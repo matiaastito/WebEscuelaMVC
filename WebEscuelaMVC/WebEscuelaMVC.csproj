@@ -106,9 +106,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202211252215540_CreateDataBase.cs" />
-    <Compile Include="Migrations\202211252215540_CreateDataBase.designer.cs">
-      <DependentUpon>202211252215540_CreateDataBase.cs</DependentUpon>
+    <Compile Include="Migrations\202211291640448_CrearBaseDatos.cs" />
+    <Compile Include="Migrations\202211291640448_CrearBaseDatos.designer.cs">
+      <DependentUpon>202211291640448_CrearBaseDatos.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aula.cs" />
@@ -127,6 +127,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Aula\Index.cshtml" />
+    <Content Include="Views\Aula\Register.cshtml" />
+    <Content Include="Views\Aula\Detalle.cshtml" />
+    <Content Include="Views\Aula\Modificar.cshtml" />
+    <Content Include="Views\Aula\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -138,8 +143,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202211252215540_CreateDataBase.resx">
-      <DependentUpon>202211252215540_CreateDataBase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202211291640448_CrearBaseDatos.resx">
+      <DependentUpon>202211291640448_CrearBaseDatos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

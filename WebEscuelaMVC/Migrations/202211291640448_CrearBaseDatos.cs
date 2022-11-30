@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateDataBase : DbMigration
+    public partial class CrearBaseDatos : DbMigration
     {
         public override void Up()
         {
@@ -11,8 +11,8 @@
                 "dbo.Aulas",
                 c => new
                     {
-                        AulaId = c.String(nullable: false, maxLength: 128),
-                        Numero = c.String(nullable: false),
+                        AulaId = c.Int(nullable: false, identity: true),
+                        Numero = c.Int(nullable: false),
                         Estado = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.AulaId);
